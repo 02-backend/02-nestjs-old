@@ -9,8 +9,9 @@ import {
   Put,
   Query,
 } from '@nestjs/common';
-import { CrUpUser, UserRole } from './users.types';
 import { UsersService } from './users.service';
+import { UserRole } from 'src/models/users.model';
+import { CreateUserDto, UpdateUserDto } from './users.dto';
 
 @Controller('users')
 export class UsersController {
@@ -34,14 +35,14 @@ export class UsersController {
   }
 
   @Post() // POST /users
-  create(@Body() newUser: CrUpUser) {
+  create(@Body() newUser: CreateUserDto) {
     return this.userService.create(newUser);
   }
 
   @Put(':id') // PUT /users/:id
   updateById(
     @Param('id', ParseIntPipe) id: number,
-    @Body() updatedUser: CrUpUser,
+    @Body() updatedUser: UpdateUserDto,
   ) {
     return this.userService.updateById(id, updatedUser);
   }

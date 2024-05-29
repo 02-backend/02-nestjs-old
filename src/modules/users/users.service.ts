@@ -1,11 +1,13 @@
 import { Injectable } from '@nestjs/common';
-import { CrUpUser, UserRole } from './users.types';
+import { UserRole } from 'src/models/users.model';
+import { CreateUserDto, UpdateUserDto } from './users.dto';
 
 @Injectable()
 export class UsersService {
   private users = [
     { id: 1, name: 'John', email: 'john@gmail.com', role: 'admin' },
-    { id: 2, name: 'Dave', email: 'dave@gmail.com', role: 'supervisor' },
+    { id: 2, name: 'Dave', email: 'dave@gmail.com', role: 'teacher' },
+    { id: 2, name: 'Julie', email: 'julie@gmail.com', role: 'student' },
   ];
 
   getAll() {
@@ -25,7 +27,7 @@ export class UsersService {
     return this.users.find((user) => user.id === id);
   }
 
-  create(newUser: CrUpUser) {
+  create(newUser: CreateUserDto) {
     const latestUser = this.users.sort((a, b) => b.id - a.id)[0];
     const completedUser = {
       id: latestUser?.id + 1,
@@ -36,7 +38,7 @@ export class UsersService {
     return completedUser;
   }
 
-  updateById(id: number, updatedUser: CrUpUser) {
+  updateById(id: number, updatedUser: UpdateUserDto) {
     return this.users.map((user) => {
       return user.id === id
         ? {

@@ -30,10 +30,12 @@ let UsersService = class UsersService {
     }
     create(newUser) {
         const latestUser = this.users.sort((a, b) => b.id - a.id)[0];
-        this.users.push({
+        const completedUser = {
             id: latestUser?.id + 1,
             ...newUser,
-        });
+        };
+        this.users.push(completedUser);
+        return completedUser;
     }
     updateById(id, updatedUser) {
         return this.users.map((user) => {
