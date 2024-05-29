@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { UserRole } from 'src/models/users.model';
 import { CreateUserDto, UpdateUserDto } from './users.dto';
 
@@ -15,16 +15,33 @@ export class UsersService {
   }
 
   getAllSupervisors() {
-    return this.users.filter((user) => user.role === 'supervisor');
+    const targetUsers = this.users.filter((user) => user.role === 'supervisor');
+
+    if (targetUsers.length === 0) {
+      throw new NotFoundException('Users not found with the role supervisor');
+    }
+
+    return targetUsers;
   }
 
   getAllByRole(role: UserRole) {
-    console.log(role);
-    return this.users.filter((user) => user.role === role);
+    const targetUsers = this.users.filter((user) => user.role === role) || [];
+
+    if (targetUsers.length === 0) {
+      throw new NotFoundException(`Users not found with the role ${role}`);
+    }
+
+    return targetUsers;
   }
 
   getById(id: number) {
-    return this.users.find((user) => user.id === id);
+    const targetUser = this.users.find((user) => user.id === id);
+
+    if (!targetUser) {
+      throw new NotFoundException('User not found');
+    }
+
+    return targetUser;
   }
 
   create(newUser: CreateUserDto) {
@@ -39,6 +56,12 @@ export class UsersService {
   }
 
   updateById(id: number, updatedUser: UpdateUserDto) {
+    const targetUser = this.users.find((user) => user.id === id);
+
+    if (!targetUser) {
+      throw new NotFoundException('User not found');
+    }
+
     return this.users.map((user) => {
       return user.id === id
         ? {
@@ -50,6 +73,12 @@ export class UsersService {
   }
 
   deleteById(id: number) {
+    const targetUser = this.users.find((user) => user.id === id);
+
+    if (!targetUser) {
+      throw new NotFoundException('User not found');
+    }
+
     this.users.filter((user) => user.id !== id);
   }
 }

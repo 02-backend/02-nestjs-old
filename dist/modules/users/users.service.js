@@ -12,7 +12,8 @@ let UsersService = class UsersService {
     constructor() {
         this.users = [
             { id: 1, name: 'John', email: 'john@gmail.com', role: 'admin' },
-            { id: 2, name: 'Dave', email: 'dave@gmail.com', role: 'supervisor' },
+            { id: 2, name: 'Dave', email: 'dave@gmail.com', role: 'teacher' },
+            { id: 2, name: 'Julie', email: 'julie@gmail.com', role: 'student' },
         ];
     }
     getAll() {

@@ -8,6 +8,7 @@ import {
   Post,
   Put,
   Query,
+  ValidationPipe,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { UserRole } from 'src/models/users.model';
@@ -35,14 +36,14 @@ export class UsersController {
   }
 
   @Post() // POST /users
-  create(@Body() newUser: CreateUserDto) {
+  create(@Body(ValidationPipe) newUser: CreateUserDto) {
     return this.userService.create(newUser);
   }
 
   @Put(':id') // PUT /users/:id
   updateById(
     @Param('id', ParseIntPipe) id: number,
-    @Body() updatedUser: UpdateUserDto,
+    @Body(ValidationPipe) updatedUser: UpdateUserDto,
   ) {
     return this.userService.updateById(id, updatedUser);
   }
