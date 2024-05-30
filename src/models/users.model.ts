@@ -6,7 +6,7 @@ import {
   IsString,
 } from 'class-validator';
 
-export type UserRole = 'admin' | 'teacher' | 'students';
+export type UserRole = 'admin' | 'teacher' | 'student';
 
 export class UserModel {
   id: number;
@@ -21,7 +21,7 @@ export class UserModel {
   @IsEmail()
   email: string;
 
-  @IsEnum(['admin', 'teacher', 'students'], {
+  @IsEnum(['admin', 'teacher', 'student'], {
     message: '',
   })
   role: UserRole;
