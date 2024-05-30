@@ -24,7 +24,7 @@ __decorate([
     __metadata("design:type", String)
 ], UserModel.prototype, "email", void 0);
 __decorate([
-    (0, class_validator_1.IsEnum)(['admin', 'teacher', 'students'], {
+    (0, class_validator_1.IsEnum)(['admin', 'teacher', 'student'], {
         message: '',
     }),
     __metadata("design:type", String)

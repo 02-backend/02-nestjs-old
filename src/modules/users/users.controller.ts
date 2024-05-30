@@ -25,9 +25,9 @@ export class UsersController {
       : this.userService.getAll();
   }
 
-  @Get('supervisor') // GET /users/supervisor
-  getAllSupervisors() {
-    return this.userService.getAllSupervisors();
+  @Get('teachers') // GET /users/supervisor
+  getAllTeachers() {
+    return this.userService.getAllTeachers();
   }
 
   @Get(':id') // GET /users/:id

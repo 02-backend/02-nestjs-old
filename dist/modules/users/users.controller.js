@@ -25,8 +25,8 @@ let UsersController = class UsersController {
             ? this.userService.getAllByRole(role)
             : this.userService.getAll();
     }
-    getAllSupervisors() {
-        return this.userService.getAllSupervisors();
+    getAllTeachers() {
+        return this.userService.getAllTeachers();
     }
     getById(id) {
         return this.userService.getById(id);
@@ -50,11 +50,11 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "getAll", null);
 __decorate([
-    (0, common_1.Get)('supervisor'),
+    (0, common_1.Get)('teachers'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
-], UsersController.prototype, "getAllSupervisors", null);
+], UsersController.prototype, "getAllTeachers", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),

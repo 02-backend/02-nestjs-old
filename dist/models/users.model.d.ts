@@ -1,4 +1,4 @@
-export type UserRole = 'admin' | 'teacher' | 'students';
+export type UserRole = 'admin' | 'teacher' | 'student';
 export declare class UserModel {
     id: number;
     name: string;

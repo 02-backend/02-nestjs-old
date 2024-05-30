@@ -1,10 +1,4 @@
-import {
-  IsEmail,
-  IsEnum,
-  IsNotEmpty,
-  IsNumber,
-  IsString,
-} from 'class-validator';
+import { IsEmail, IsEnum, IsNotEmpty, IsString } from 'class-validator';
 
 export type UserRole = 'admin' | 'teacher' | 'student';
 
@@ -14,9 +8,6 @@ export class UserModel {
   @IsString()
   @IsNotEmpty()
   name: string;
-
-  @IsNumber()
-  age: number;
 
   @IsEmail()
   email: string;
