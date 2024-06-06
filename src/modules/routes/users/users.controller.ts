@@ -18,29 +18,34 @@ import { CreateUserDto, UpdateUserDto } from './users.dto';
 export class UsersController {
   constructor(private readonly userService: UsersService) {}
 
-  @Get() // GET /users
+  // GET /users
+  @Get()
   getAll(@Query('role') role?: UserRole) {
     return role
       ? this.userService.getAllByRole(role)
       : this.userService.getAll();
   }
 
-  @Get('teachers') // GET /users/supervisor
+  // GET /users/supervisor
+  @Get('teachers')
   getAllTeachers() {
     return this.userService.getAllTeachers();
   }
 
-  @Get(':id') // GET /users/:id
+  // GET /users/:id
+  @Get(':id')
   getById(@Param('id', ParseIntPipe) id: number) {
     return this.userService.getById(id);
   }
 
-  @Post() // POST /users
+  // POST /users
+  @Post()
   create(@Body(ValidationPipe) newUser: CreateUserDto) {
     return this.userService.create(newUser);
   }
 
-  @Put(':id') // PUT /users/:id
+  // PUT /users/:id
+  @Put(':id')
   updateById(
     @Param('id', ParseIntPipe) id: number,
     @Body(ValidationPipe) updatedUser: UpdateUserDto,
@@ -48,7 +53,8 @@ export class UsersController {
     return this.userService.updateById(id, updatedUser);
   }
 
-  @Delete(':id') // DELETE /users/:id
+  // DELETE /users/:id
+  @Delete(':id')
   deleteById(@Param('id', ParseIntPipe) id: number) {
     return this.userService.deleteById(id);
   }
